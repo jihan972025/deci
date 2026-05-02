@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decibel Gauge Meter</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #131313;
+            font-family: 'Courier New', monospace;
+            color: #CCFF00;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .meter-section {
+            background: #0A0A0A;
+            border: 1px solid #333333;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #CCFF00;
+        }
+
+        .status-text {
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            color: #CCFF00;
+        }
+
+        .main-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 0;
+        }
+
+        .db-value {
+            font-size: 96px;
+            font-weight: 900;
+            color: #CCFF00;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 15px #CCFF00;
+        }
+
+        .db-unit {
+            font-size: 36px;
+            margin-left: 8px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .badge {
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-outline {
+            background: rgba(204, 255, 0, 0.1);
+            border: 1px solid #CCFF00;
+            color: #CCFF00;
+        }
+
+        .badge-filled {
+            background: #CCFF00;
+            color: #000000;
+        }
+
+        #gaugeChart {
+            width: 100%;
+            height: 400px;
+            margin-top: 32px;
+        }
+
+        .arc-meter {
+            margin-top: 32px;
+            position: relative;
+            height: 48px;
+            width: 100%;
+            border-top: 1px solid #333333;
+            padding-top: 16px;
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 8px;
+            font-weight: bold;
+            color: #666666;
+            margin-bottom: 4px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #1C1B1B;
+            border: 1px solid #333333;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: #CCFF00;
+            box-shadow: 0 0 10px #CCFF00;
+            transition: width 0.3s ease;
+        }
+
+        .peak-marker {
+            position: absolute;
+            height: 100%;
+            width: 2px;
+            background: #FFB4AB;
+            z-index: 10;
+            transition: left 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="meter-section">
+            <!-- Status Indicators -->
+            <div class="status-header">
+                <div class="status-dot"></div>
+                <span class="status-text">ACTIVE MONITORING</span>
+            </div>
+
+            <!-- Main Display Cluster -->
+            <div class="main-display">
+                <div class="db-value">
+                    <span id="dbValue">68.4</span><span class="db-unit">dB</span>
+                </div>
+                <div class="badges">
+                    <span class="badge badge-outline">A-WEIGHTED</span>
+                    <span class="badge badge-filled">FAST</span>
+                </div>
+            </div>
+
+            <!-- ECharts Gauge -->
+            <div id="gaugeChart"></div>
+
+            <!-- Arc Meter Simulation -->
+            <div class="arc-meter">
+                <div class="scale-labels">
+                    <span>0</span>
+                    <span>20</span>
+                    <span>40</span>
+                    <span>60</span>
+                    <span>80</span>
+                    <span>100</span>
+                    <span>120</span>
+                </div>
+                <div class="progress-bar-container">
+                    <!-- Current Level Indicator -->
+                    <div class="progress-bar-fill" id="progressBar" style="width: 57%;"></div>
+                    <!-- Peak Marker -->
+                    <div class="peak-marker" id="peakMarker" style="left: 72%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize ECharts
+        const chartDom = document.getElementById('gaugeChart');
+        const myChart = echarts.init(chartDom);
+
+        let currentDb = 68.4;
+        let peakDb = 86.4;
+
+        function updateGauge(value) {
+            const option = {
+                backgroundColor: 'transparent',
+                series: [
+                    {
+                        type: 'gauge',
+                        startAngle: 90,
+                        endAngle: -270,
+                        pointer: {
+                            show: false
+                        },
+                        progress: {
+                            show: true,
+                            overlap: false,
+                            roundCap: true,
+                            clip: false,
+                            itemStyle: {
+                                borderWidth: 1,
+                                borderColor: '#464646'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                width: 40
+                            }
+                        },
+                        splitLine: {
+                            show: false,
+                            distance: 0,
+                            length: 10
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel: {
+                            show: false,
+                            distance: 50
+                        },
+                        data: [
+                            {
+                                value: value,
+                                name: 'Perfect',
+                                title: {
+                                    offsetCenter: ['0%', '-30%']
+                                },
+                                detail: {
+                                    valueAnimation: true,
+                                    offsetCenter: ['0%', '-20%']
+                                }
+                            }
+                        ],
+                        title: {
+                            fontSize: 14,
+                            color: '#999'
+                        },
+                        detail: {
+                            width: 50,
+                            height: 14,
+                            fontSize: 32,
+                            color: '#CCFF00',
+                            borderColor: 'inherit',
+                            borderRadius: 20,
+                            borderWidth: 1,
+                            formatter: '{value} dB'
+                        }
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+        }
+
+        // Initialize gauge
+        updateGauge(currentDb);
+
+        // Simulate real-time updates
+        function simulateUpdate() {
+            // Random dB value between 30-100
+            currentDb = Math.random() * 70 + 30;
+
+            // Update peak if current is higher
+            if (currentDb > peakDb) {
+                peakDb = currentDb;
+            }
+
+            // Update gauge chart
+            updateGauge(currentDb);
+
+            // Update main display
+            document.getElementById('dbValue').textContent = currentDb.toFixed(1);
+
+            // Update progress bar (0-120 dB range)
+            const percentage = (currentDb / 120) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+
+            // Update peak marker
+            const peakPercentage = (peakDb / 120) * 100;
+            document.getElementById('peakMarker').style.left = peakPercentage + '%';
+        }
+
+        // Update every 1 second
+        setInterval(simulateUpdate, 1000);
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noise_silent">صمت تقريبًا</string>
+    <string name="noise_library">مستوى مكتبة هادئة</string>
+    <string name="noise_conversation">مستوى محادثة عادية</string>
+    <string name="noise_vacuum">مستوى المكنسة الكهربائية</string>
+    <string name="noise_motorcycle">مستوى الدراجة النارية</string>
+    <string name="noise_horn">مستوى بوق السيارة</string>
+</resources>

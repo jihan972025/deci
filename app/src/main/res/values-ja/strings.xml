@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noise_silent">ほぼ無音</string>
+    <string name="noise_library">静かな図書館レベル</string>
+    <string name="noise_conversation">通常の会話レベル</string>
+    <string name="noise_vacuum">掃除機レベル</string>
+    <string name="noise_motorcycle">バイクレベル</string>
+    <string name="noise_horn">車のクラクションレベル</string>
+</resources>

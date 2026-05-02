@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noise_silent">Nahezu Stille</string>
+    <string name="noise_library">Ruhige Bibliothek</string>
+    <string name="noise_conversation">Normales Gespräch</string>
+    <string name="noise_vacuum">Staubsauger</string>
+    <string name="noise_motorcycle">Motorrad</string>
+    <string name="noise_horn">Autohupe</string>
+</resources>

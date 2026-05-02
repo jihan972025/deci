@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style="margin: 0; padding: 0;"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary-container": "#c3f400",
+                        "error-container": "#93000a",
+                        "surface-variant": "#353534",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed": "#271900",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-secondary": "#412d00",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "tertiary": "#ffffff",
+                        "surface-container-highest": "#353534",
+                        "on-primary": "#283500",
+                        "secondary-fixed-dim": "#ffba20",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "primary-fixed-dim": "#abd600",
+                        "on-primary-container": "#556d00",
+                        "inverse-on-surface": "#313030",
+                        "inverse-surface": "#e5e2e1",
+                        "outline-variant": "#444933",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#5e4200",
+                        "tertiary-fixed": "#e3e2e2",
+                        "secondary": "#ffdb9d",
+                        "on-surface-variant": "#c4c9ac",
+                        "surface-bright": "#3a3939",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#ffdea8",
+                        "primary-fixed": "#c3f400",
+                        "on-tertiary": "#2f3131",
+                        "on-tertiary-container": "#646464",
+                        "surface-tint": "#abd600",
+                        "surface-container": "#201f1f",
+                        "outline": "#8e9379",
+                        "inverse-primary": "#506600",
+                        "tertiary-container": "#e3e2e2",
+                        "on-secondary-container": "#6b4b00",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131313",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-primary-fixed": "#161e00",
+                        "secondary-container": "#feb700",
+                        "on-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "8px",
+                        "unit": "4px",
+                        "density-med": "12px",
+                        "density-high": "4px",
+                        "margin": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "data-display": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "data-display": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}],
+                        "body-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .segmented-display {
+            font-family: 'Space Grotesk', monospace;
+            text-shadow: 0 0 15px rgba(195, 244, 0, 0.3);
+        }
+        .grid-mesh {
+            background-image: radial-gradient(circle, #333 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+  </style>
+  </head>
+<body class="bg-surface font-body-lg text-on-surface" style="margin: 0; padding: 0; min-height: 100vh;">
+<!-- Main Instrument Canvas -->
+<main class="grid-mesh" style="padding: 0 16px 16px 16px; margin: 0; margin-top: -8px;">
+<div class="max-w-4xl mx-auto" style="padding: 0; margin: 0; margin-top: -8px;">
+
+<!-- ECharts Gauge -->
+<div id="gaugeChart" style="width: 100%; height: 300px; margin: 0; padding: 0; margin-top: -16px;"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+// Initialize ECharts
+const chartDom = document.getElementById('gaugeChart');
+const myChart = echarts.init(chartDom);
+
+// Official gauge-grade example from https://echarts.apache.org/examples/en/editor.html?c=gauge-grade
+const option = {
+  grid: {
+    top: 0,
+    bottom: 0
+  },
+  series: [
+    {
+      type: 'gauge',
+      startAngle: 180,
+      endAngle: 0,
+      center: ['50%', '85%'],
+      radius: '110%',
+      min: 0,
+      max: 1,
+      splitNumber: 12,
+      axisLine: {
+        lineStyle: {
+          width: 6,
+          color: [
+            [0.25, '#58D9F9'],
+            [0.5, '#7CFFB2'],
+            [0.75, '#FDDD60'],
+            [1, '#FF6E76']
+          ]
+        }
+      },
+      pointer: {
+        icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+        length: '12%',
+        width: 20,
+        offsetCenter: [0, '-60%'],
+        itemStyle: {
+          color: 'auto'
+        }
+      },
+      axisTick: {
+        length: 12,
+        lineStyle: {
+          color: 'auto',
+          width: 2
+        }
+      },
+      splitLine: {
+        length: 20,
+        lineStyle: {
+          color: 'auto',
+          width: 5
+        }
+      },
+      axisLabel: {
+        color: '#464646',
+        fontSize: 20,
+        distance: -60,
+        rotate: 'tangential',
+        formatter: function (value) {
+          if (value === 0.875) {
+            return 'Grade A';
+          } else if (value === 0.625) {
+            return 'Grade B';
+          } else if (value === 0.375) {
+            return 'Grade C';
+          } else if (value === 0.125) {
+            return 'Grade D';
+          }
+          return '';
+        }
+      },
+      title: {
+        offsetCenter: [0, '-10%'],
+        fontSize: 20
+      },
+      detail: {
+        fontSize: 64,
+        offsetCenter: [0, '-25%'],
+        valueAnimation: true,
+        formatter: function (value) {
+          return (value * 120).toFixed(1);
+        },
+        color: 'inherit',
+        fontFamily: 'Space Grotesk',
+        fontWeight: 700
+      },
+      data: [
+        {
+          value: 0.8,
+          name: ''
+        }
+      ]
+    }
+  ]
+};
+
+myChart.setOption(option);
+
+// Remove automatic updates - will be updated from Android
+// Handle window resize
+window.addEventListener('resize', function() {
+    myChart.resize();
+});
+</script>
+
+<!-- Noise Level Description -->
+<div style="margin-top: 8px; margin-bottom: 12px;">
+<p id="noiseLevelText" class="font-headline-md text-headline-md text-primary-container text-center"></p>
+</div>
+
+<!-- Secondary Metrics Bento Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4" style="margin-bottom: 12px;">
+<div class="bg-[#1A1A1A] border border-[#333333] p-3">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">MAX PEAK</p>
+<p id="maxPeakValue" class="font-data-display text-data-display text-primary-container">0.0 dB</p>
+</div>
+<div class="bg-[#1A1A1A] border border-[#333333] p-3">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">MIN LEVEL</p>
+<p id="minLevelValue" class="font-data-display text-data-display text-primary-container">0.0 dB</p>
+</div>
+</div>
+
+<section class="bg-[#0A0A0A] border border-[#333333] overflow-hidden relative" style="margin-top: 0;">
+<div id="lineChart" style="width: 100%; height: 150px;"></div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+// Initialize line chart
+const lineChartDom = document.getElementById('lineChart');
+const lineChart = echarts.init(lineChartDom);
+
+// Generate random dB data for 60 seconds
+const timeList = [];
+const dbList = [];
+for (let i = 0; i < 60; i++) {
+  timeList.push(i + 's');
+  dbList.push(Math.floor(Math.random() * 50 + 40)); // Random dB between 40-90
+}
+
+const lineOption = {
+  backgroundColor: 'transparent',
+  grid: {
+    left: '60px',
+    right: '20px',
+    top: '10px',
+    bottom: '30px'
+  },
+  visualMap: {
+    show: false,
+    type: 'continuous',
+    seriesIndex: 0,
+    min: 0,
+    max: 120
+  },
+  tooltip: {
+    trigger: 'axis',
+    formatter: '{b}: {c} dB'
+  },
+  xAxis: {
+    type: 'category',
+    data: timeList,
+    axisLabel: {
+      color: '#666666',
+      interval: 9 // Show every 10 seconds
+    },
+    axisLine: {
+      lineStyle: {
+        color: '#333333'
+      }
+    }
+  },
+  yAxis: {
+    type: 'value',
+    min: 0,
+    max: 120,
+    interval: 10,
+    axisLabel: {
+      color: '#666666',
+      formatter: function(value) {
+        if (value === 0 || value === 40 || value === 80 || value === 120) {
+          return value + ' dB';
+        }
+        return '';
+      }
+    },
+    splitLine: {
+      lineStyle: {
+        color: '#333333'
+      }
+    },
+    axisLine: {
+      lineStyle: {
+        color: '#333333'
+      }
+    }
+  },
+  series: [
+    {
+      type: 'line',
+      showSymbol: false,
+      data: dbList,
+      smooth: true,
+      lineStyle: {
+        width: 2
+      }
+    }
+  ]
+};
+
+lineChart.setOption(lineOption);
+
+// Function to update line chart from Android
+function updateLineChart(db) {
+  // Shift data
+  timeList.shift();
+  dbList.shift();
+
+  // Add new data point
+  const newTime = parseInt(timeList[timeList.length - 1]) + 1;
+  timeList.push(newTime + 's');
+  dbList.push(Math.floor(db));
+
+  lineChart.setOption({
+    xAxis: {
+      data: timeList
+    },
+    series: [{
+      data: dbList
+    }]
+  });
+}
+
+// Function to set noise level text from Android (already localized)
+function setNoiseLevelText(text) {
+  const noiseLevelElement = document.getElementById('noiseLevelText');
+  if (noiseLevelElement) noiseLevelElement.textContent = text;
+}
+
+// Function to update max peak from Android
+function updateMaxPeak(db) {
+  const maxPeakElement = document.getElementById('maxPeakValue');
+  maxPeakElement.textContent = db.toFixed(1) + ' dB';
+}
+
+// Function to update min level from Android
+function updateMinLevel(db) {
+  const minLevelElement = document.getElementById('minLevelValue');
+  minLevelElement.textContent = db.toFixed(1) + ' dB';
+}
+
+// Function to apply accent color from Android
+function setAccentColor(hex) {
+  ['noiseLevelText', 'maxPeakValue', 'minLevelValue'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.color = hex;
+  });
+  if (typeof option !== 'undefined' && typeof myChart !== 'undefined') {
+    option.series[0].detail.color = hex;
+    myChart.setOption(option);
+  }
+}
+
+// Handle window resize
+window.addEventListener('resize', function() {
+    lineChart.resize();
+});
+</script>
+
+</div>
+</main>
+</body></html>
+
+

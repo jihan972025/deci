@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary-container": "#c3f400",
+                        "error-container": "#93000a",
+                        "surface-variant": "#353534",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed": "#271900",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-secondary": "#412d00",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "tertiary": "#ffffff",
+                        "surface-container-highest": "#353534",
+                        "on-primary": "#283500",
+                        "secondary-fixed-dim": "#ffba20",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "primary-fixed-dim": "#abd600",
+                        "on-primary-container": "#556d00",
+                        "inverse-on-surface": "#313030",
+                        "inverse-surface": "#e5e2e1",
+                        "outline-variant": "#444933",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#5e4200",
+                        "tertiary-fixed": "#e3e2e2",
+                        "secondary": "#ffdb9d",
+                        "on-surface-variant": "#c4c9ac",
+                        "surface-bright": "#3a3939",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#ffdea8",
+                        "primary-fixed": "#c3f400",
+                        "on-tertiary": "#2f3131",
+                        "on-tertiary-container": "#646464",
+                        "surface-tint": "#abd600",
+                        "surface-container": "#201f1f",
+                        "outline": "#8e9379",
+                        "inverse-primary": "#506600",
+                        "tertiary-container": "#e3e2e2",
+                        "on-secondary-container": "#6b4b00",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131313",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-primary-fixed": "#161e00",
+                        "secondary-container": "#feb700",
+                        "on-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "8px",
+                        "unit": "4px",
+                        "density-med": "12px",
+                        "density-high": "4px",
+                        "margin": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "data-display": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "data-display": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}],
+                        "body-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .segmented-display {
+            font-family: 'Space Grotesk', monospace;
+            text-shadow: 0 0 15px rgba(195, 244, 0, 0.3);
+        }
+        .grid-mesh {
+            background-image: radial-gradient(circle, #333 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-lg text-on-surface min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="bg-[#0A0A0A] text-lime-400 font-['Space_Grotesk'] uppercase tracking-widest text-xs font-bold docked full-width top-0 border-b border-[#333333] border-b-1 flex justify-between items-center w-full px-4 h-12 z-50">
+<div class="flex items-center gap-2">
+<span class="text-lime-400 font-black tracking-tighter text-lg">DECI PRO</span>
+</div>
+
+</header>
+<!-- Main Instrument Canvas -->
+<main class="flex-grow pt-4 pb-20 px-4 grid-mesh">
+<div class="max-w-4xl mx-auto space-y-4">
+<!-- Primary Readout Module -->
+<section class="bg-[#0A0A0A] border border-[#333333] p-6 relative overflow-hidden">
+<!-- Status Indicators -->
+<div class="flex justify-between items-start mb-8">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-primary-container"></div>
+<span class="font-label-caps text-label-caps text-primary-container">ACTIVE MONITORING</span>
+</div>
+</div>
+
+</div>
+<!-- Main Display Cluster -->
+<div class="flex flex-col items-center justify-center py-4">
+<div class="segmented-display text-[96px] font-black text-primary-container leading-none tracking-tighter">
+                        68.4 <span class="text-4xl">dB</span>
+</div>
+<div class="flex gap-4 mt-2">
+<span class="bg-surface-variant px-2 py-0.5 font-label-caps text-label-caps text-on-surface">A-WEIGHTED</span>
+<span class="bg-primary-container px-2 py-0.5 font-label-caps text-label-caps text-black">FAST</span>
+</div>
+</div>
+<!-- Arc Meter Simulation -->
+<div class="mt-8 relative h-12 w-full border-t border-[#333333] pt-4">
+<div class="flex justify-between text-[8px] font-label-caps text-on-surface-variant mb-1">
+<span>0</span><span>20</span><span>40</span><span>60</span><span>80</span><span>100</span><span>120</span>
+</div>
+<div class="w-full h-2 bg-surface-container-low border border-[#333333] relative">
+<!-- Current Level Indicator -->
+<div class="absolute left-0 top-0 h-full bg-primary-container shadow-[0_0_10px_#c3f400]" style="width: 57%;"></div>
+<!-- Peak Marker -->
+<div class="absolute h-full w-0.5 bg-error z-10" style="left: 72%;"></div>
+</div>
+</div>
+</section>
+<!-- Secondary Metrics Bento Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-[#1A1A1A] border border-[#333333] p-3">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">MAX PEAK</p>
+<p class="font-data-display text-data-display text-primary-container">74.2 dB</p>
+</div>
+<div class="bg-[#1A1A1A] border border-[#333333] p-3">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">MIN LEVEL</p>
+<p class="font-data-display text-data-display text-primary-container">42.1 dB</p>
+</div>
+<div class="bg-[#1A1A1A] border border-[#333333] p-3">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">L-EQUIVALENT</p>
+<p class="font-data-display text-data-display text-primary-container">55.8 dB</p>
+</div>
+<div class="bg-[#1A1A1A] border border-[#333333] p-3">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">LIMIT EXCEED</p>
+<p class="font-data-display text-data-display text-error">00:00:00</p>
+</div>
+</div>
+<!-- Spectrum / Waveform Visualizer -->
+<section class="bg-[#0A0A0A] border border-[#333333] h-40 overflow-hidden relative">
+
+<div class="w-full h-full flex items-end gap-[1px] px-1 pb-1">
+<!-- Fake Bars -->
+<div class="bg-primary-container/20 w-full h-[20%]"></div>
+<div class="bg-primary-container/30 w-full h-[35%]"></div>
+<div class="bg-primary-container/40 w-full h-[50%]"></div>
+<div class="bg-primary-container/60 w-full h-[85%]"></div>
+<div class="bg-primary-container w-full h-[95%]"></div>
+<div class="bg-primary-container/80 w-full h-[70%]"></div>
+<div class="bg-primary-container/60 w-full h-[45%]"></div>
+<div class="bg-primary-container/40 w-full h-[30%]"></div>
+<div class="bg-primary-container/50 w-full h-[55%]"></div>
+<div class="bg-primary-container/70 w-full h-[80%]"></div>
+<div class="bg-primary-container/30 w-full h-[40%]"></div>
+<div class="bg-primary-container/20 w-full h-[15%]"></div>
+<div class="bg-primary-container/30 w-full h-[25%]"></div>
+<div class="bg-primary-container/60 w-full h-[65%]"></div>
+<div class="bg-primary-container/90 w-full h-[90%]"></div>
+<div class="bg-primary-container/50 w-full h-[45%]"></div>
+<div class="bg-primary-container/30 w-full h-[30%]"></div>
+<div class="bg-primary-container/20 w-full h-[20%]"></div>
+</div>
+<div class="absolute inset-0 pointer-events-none border-b border-primary-container/20 border-dashed" style="top: 50%;"></div>
+</section>
+
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-16 flex justify-around items-stretch overflow-hidden bg-[#0A0A0A] border-t border-zinc-800 z-50">
+<a class="flex flex-col items-center justify-center bg-[#CCFF00] text-black h-full w-full" href="#">
+<span class="material-symbols-outlined" data-icon="speed" style="font-variation-settings: 'FILL' 1;">speed</span>
+<span class="font-['Space_Grotesk'] uppercase font-bold text-[10px] tracking-tight">METER</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 h-full w-full border-r border-zinc-900 hover:bg-zinc-800 transition-none active:scale-95" href="#">
+<span class="material-symbols-outlined" data-weight="fill">analytics</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase tracking-tighter">ANALYSIS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 h-full w-full border-r border-zinc-900 hover:bg-zinc-800 transition-none active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history_toggle_off</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase tracking-tighter">LOGS</span>
+</a>
+</nav>
+</body></html>
+
+

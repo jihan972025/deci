@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>그라데이션 네온 비주얼라이저</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 1. 가운데 가로선 (스크린샷 색상에 맞춰 글로우 조정) */
+        .center-glow {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            box-shadow: 
+                0 0 10px #fff,
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(255, 165, 0, 0.5); /* 주황빛 글로우 */
+            z-index: 2;
+        }
+
+        .visualizer {
+            display: flex;
+            align-items: center;
+            gap: 1px;
+            width: 98%;
+            height: 600px;
+            z-index: 1;
+
+            /* 수직 페이드 마스크: 상하단으로 갈수록 투명 */
+            -webkit-mask-image: linear-gradient(
+                to bottom, 
+                transparent 5%, 
+                black 50%, 
+                transparent 95%
+            );
+            mask-image: linear-gradient(
+                to bottom, 
+                transparent 5%, 
+                black 50%, 
+                transparent 95%
+            );
+        }
+
+        .bar {
+            position: relative;
+            flex: 1;
+            width: 1px;
+            height: 4px;
+            animation: bounce 1.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { height: 10px; }
+            50% { height: 480px; }
+            100% { height: 60px; }
+        }
+
+        .bar:nth-child(3n) { animation-duration: 1.3s; }
+        .bar:nth-child(7n) { animation-duration: 2.1s; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="center-glow"></div>
+    <div class="visualizer" id="visualizer"></div>
+</div>
+
+<script>
+    const container = document.getElementById('visualizer');
+    const barCount = 300; // 더 촘촘하게 배치
+
+    // 스크린샷 기반의 4단계 그라데이션 설정 (좌 -> 우)
+    const colors = [
+        { r: 45, g: 65, b: 115 },   // 1. 군청 (Deep Blue)
+        { r: 235, g: 175, b: 25 },  // 2. 황금 (Amber/Gold)
+        { r: 245, g: 110, b: 25 },  // 3. 주황 (Orange)
+        { r: 230, g: 30, b: 35 }    // 4. 빨강 (Red)
+    ];
+
+    // 두 색상 사이의 보간법(Interpolation) 함수
+    function lerpColor(c1, c2, factor) {
+        return {
+            r: Math.round(c1.r + (c2.r - c1.r) * factor),
+            g: Math.round(c1.g + (c2.g - c1.g) * factor),
+            b: Math.round(c1.b + (c2.b - c1.b) * factor)
+        };
+    }
+
+    for (let i = 0; i < barCount; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        
+        // 전체 구간에서의 위치 비율 (0.0 ~ 1.0)
+        const ratio = i / barCount;
+        let color;
+
+        // 위치에 따라 적절한 두 색상 구간 선택 후 보간
+        if (ratio < 0.33) {
+            color = lerpColor(colors[0], colors[1], ratio / 0.33);
+        } else if (ratio < 0.66) {
+            color = lerpColor(colors[1], colors[2], (ratio - 0.33) / 0.33);
+        } else {
+            color = lerpColor(colors[2], colors[3], (ratio - 0.66) / 0.34);
+        }
+
+        const rgb = `rgb(${color.r}, ${color.g}, ${color.b})`;
+        const rgba = `rgba(${color.r}, ${color.g}, ${color.b}, 0.8)`;
+
+        // 인라인 스타일로 개별 색상 및 네온 효과 적용
+        bar.style.background = `linear-gradient(to bottom, transparent, ${rgb} 50%, transparent)`;
+        bar.style.boxShadow = `0 0 15px ${rgba}`;
+        bar.style.animationDelay = `${Math.random() * 2}s`;
+        
+        container.appendChild(bar);
+    }
+</script>
+
+</body>
+</html>

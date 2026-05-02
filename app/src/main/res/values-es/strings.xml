@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noise_silent">Casi silencio</string>
+    <string name="noise_library">Nivel de biblioteca silenciosa</string>
+    <string name="noise_conversation">Nivel de conversación normal</string>
+    <string name="noise_vacuum">Nivel de aspiradora</string>
+    <string name="noise_motorcycle">Nivel de motocicleta</string>
+    <string name="noise_horn">Nivel de bocina de coche</string>
+</resources>

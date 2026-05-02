@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noise_silent">Почти тишина</string>
+    <string name="noise_library">Тихая библиотека</string>
+    <string name="noise_conversation">Обычный разговор</string>
+    <string name="noise_vacuum">Уровень пылесоса</string>
+    <string name="noise_motorcycle">Уровень мотоцикла</string>
+    <string name="noise_horn">Автомобильный гудок</string>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DECI PRO</string>
+    <string name="engineering_mode">ENGINEERING MODE</string>
+    <string name="input">Input</string>
+    <string name="response">Response</string>
+    <string name="calib">Calib</string>
+    <string name="mic_int">MIC_INT_01</string>
+    <string name="response_fast">FAST (125ms)</string>
+    <string name="calib_value">94.0 dB OK</string>
+    <string name="db">dB</string>
+    <string name="a_weighted">(A-WEIGHTED)</string>
+    <string name="measurement">MEASUREMENT</string>
+    <string name="spl">SPL</string>
+    <string name="integration">INTEGRATION</string>
+    <string name="leq">LEQ</string>
+    <string name="range_limits">RANGE LIMITS</string>
+    <string name="max_min">Max/Min</string>
+    <string name="frequency">FREQUENCY</string>
+    <string name="weight_a">Weight A</string>
+    <string name="live_spectrum">Live Spectrum Analysis</string>
+    <string name="active_24bit">ACTIVE // 24-BIT</string>
+    <string name="l90_baseline">L90 Baseline</string>
+    <string name="l10_peak">L10 Peak</string>
+    <string name="meter">METER</string>
+    <string name="analysis">ANALYSIS</string>
+    <string name="logs">LOGS</string>
+    <string name="permission_required">Microphone permission is required for sound measurement</string>
+    <string name="noise_silent">Near silence</string>
+    <string name="noise_library">Quiet library level</string>
+    <string name="noise_conversation">Normal conversation level</string>
+    <string name="noise_vacuum">Vacuum cleaner level</string>
+    <string name="noise_motorcycle">Motorcycle level</string>
+    <string name="noise_horn">Car horn level</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noise_silent">거의 무음</string>
+    <string name="noise_library">조용한 도서관 수준</string>
+    <string name="noise_conversation">일반적인 대화 소리 수준</string>
+    <string name="noise_vacuum">청소기 소리 수준</string>
+    <string name="noise_motorcycle">오토바이 소리 수준</string>
+    <string name="noise_horn">자동차 경적 소음 수준</string>
+</resources>

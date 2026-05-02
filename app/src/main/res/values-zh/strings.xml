@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noise_silent">几乎无声</string>
+    <string name="noise_library">安静图书馆级别</string>
+    <string name="noise_conversation">正常对话级别</string>
+    <string name="noise_vacuum">吸尘器级别</string>
+    <string name="noise_motorcycle">摩托车级别</string>
+    <string name="noise_horn">汽车喇叭级别</string>
+</resources>
